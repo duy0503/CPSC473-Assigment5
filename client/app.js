@@ -1,12 +1,14 @@
 /* jshint browser: true, jquery: true, camelcase: true, indent: 2, undef: true, quotmark: single, maxlen: 80, trailing: true, curly: true, eqeqeq: true, forin: true, immed: true, latedef: true, newcap: true, nonew: true, unused: true, strict: true */
-
+'use strict';
 var currentId;
 var results = [];
 
 var getScore = function() {
 
     $.get('score', function(res) {
-        var correct = '<li class="list-group-item">' + 'Correct Answers: ' + res.Correct + '</li>';
+        var correct = '<li class="list-group-item">' +
+            'Correct Answers: ' +
+            res.Correct + '</li>';
 
         var incorrect = '<li class="list-group-item">' + 'Incorrect Answers: ' + res.Incorrect + '</li>';
 
@@ -18,7 +20,6 @@ var getScore = function() {
 };
 
 var main = function() {
-    'use strict';
 
     var socket = io.connect();
 
@@ -70,7 +71,7 @@ var main = function() {
     socket.on('new answer', function(data) {
         console.log(data);
         var result;
-        if (data.result == true) {
+        if (data.result === true) {
             result = ' answered correctly';
         } else {
             result = ' answered incorrectly';
@@ -87,7 +88,7 @@ var main = function() {
     socket.on('new round', function(data) {
         //clear all answers
         $('.answers').empty();
-    })
+    });
 
 };
 
